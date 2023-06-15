@@ -4,24 +4,19 @@ import java.util.ArrayList;
 
 public class userTask {
     public static void main(String[] args) {
-
         User user = new User();
         user.setName("Vasya");
-        user.getName();
-        user.setName("Katerina");
-        user.getName();
+        user.setName("Kateryna");
+        user.setPassword("12345678ss");
+        user.setDateOfBirth("21.09.2002");
 
         Admin admin = new Admin();
-        admin.add(user.name());
-
-
-
-
+        admin.add(user.getName());
     }
 }
 
 interface IUser{
-    void getName();
+    String getName();
     void setName(String newName);
 }
 
@@ -29,13 +24,17 @@ class Admin implements IUser{
 
     ArrayList<String> arr = new ArrayList<>();
 
+    private String adminName;
+
     @Override
-    public void getName() {
+    public String getName() {
+        return adminName;
     }
 
     @Override
-    public void setName(String newName) {
-
+    public void setName(String adminName) {
+        this.adminName = adminName;
+        System.out.println("The new name of this user is "+this.adminName);
     }
 
     public void add(String user) {
@@ -43,25 +42,49 @@ class Admin implements IUser{
         arr.add(user);
     }
 
-    public void del(ArrayList<User> arr) {
-
+    public void del(String user) {
+        System.out.println("User "+'"'+user+'"'+" has been removed");
+        arr.remove(user);
     }
 }
 
 class User implements IUser{
-    private String name;
-    @Override
-    public void getName() {
-        System.out.println("The name of this user is "+this.name);
+    private String userName;
+    private String dateOfBirth;
+    private String password;
+
+    public String getPassword() {
+        System.out.println(password);
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+        System.out.println("The new password of this user is "+this.password);
+    }
+
+
+
+    public String getDateOfBirth() {
+        System.out.println(dateOfBirth);
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        System.out.println("The new date of birth of this user is "+this.dateOfBirth);
     }
 
     @Override
-    public void setName(String newName) {
-        this.name = newName;
-        System.out.println("The new name of this user is "+this.name);
+    public String getName() {
+        System.out.println(userName);
+        return userName;
     }
 
-    public String name(){
-        return name;
+    @Override
+    public void setName(String userName) {
+        this.userName = userName;
+        System.out.println("The new name of this user is "+this.userName);
     }
+
 }
